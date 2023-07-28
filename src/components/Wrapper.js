@@ -4,7 +4,6 @@ import Cookies from "universal-cookie/es6";
 import {useNavigate} from "react-router-dom";
 import {authAdmin} from "../http/api/auth";
 import {SIGNIN_ROUTE} from "../utils/consts";
-import PagesList from "./PagesList";
 
 const Wrapper = ({ children }) => {
 
@@ -26,7 +25,7 @@ const Wrapper = ({ children }) => {
     useEffect(() => {
         if (!loading) {
             if (!auth) {
-                // navigate(SIGNIN_ROUTE)
+                navigate(SIGNIN_ROUTE)
             }
         }
     }, [loading])

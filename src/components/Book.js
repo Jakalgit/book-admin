@@ -1,22 +1,32 @@
 import React from 'react';
 import styles from "../styles/components/Book.module.css"
+import {useNavigate} from "react-router-dom";
+import {CHANGE_BOOK_ROUTE} from "../utils/consts";
 
-const Book = ({ setVisibleModal, setBookIdForDelete }) => {
+const Book = ({ book, setVisibleModal, setBookIdForDelete }) => {
+
+    const navigate = useNavigate()
 
     const deleteBook = () => {
         setVisibleModal(true)
-        setBookIdForDelete(1)
+        setBookIdForDelete(book.id)
     }
 
+    const changeBook = () => {
+        navigate(CHANGE_BOOK_ROUTE + book.token)
+    }
+
+    const src = process.env.REACT_APP_API_URL + 'image/' + book.image
+
     return (
-        <div className={styles.block}>
+        <div className={styles.block + ' fd'}>
             <img
                 className={styles.image}
-                src={require("../img/kandinsky.jpg")}
+                src={src}
                 alt="book image"
             />
             <p className={styles.name}>
-                Шёпот в тени
+                {book.name}
             </p>
             <div
                 style={{
@@ -24,7 +34,10 @@ const Book = ({ setVisibleModal, setBookIdForDelete }) => {
                     justifyContent: "center"
                 }}
             >
-                <p className={styles.change + ' ' + styles.btn}>
+                <p
+                    onClick={changeBook}
+                    className={styles.change + ' ' + styles.btn}
+                >
                     Редактировать
                 </p>
             </div>

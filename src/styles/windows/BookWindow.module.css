@@ -1,5 +1,6 @@
 .block {
     padding: 2rem;
+    width: 85%;
     max-height: 100vh;
     flex: 1 0 auto;
     display: flex;

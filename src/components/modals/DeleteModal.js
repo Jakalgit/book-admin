@@ -1,8 +1,8 @@
 import React from 'react';
-import styles from "../styles/components/DeleteModal.module.css"
+import styles from "../../styles/components/DeleteModal.module.css"
 import {CSSTransition} from "react-transition-group";
 
-const DeleteModal = ({ visible, setVisible }) => {
+const DeleteModal = ({ visible, setVisible, text, deleteFunc }) => {
 
     const closeModal = () => {
         setVisible(false)
@@ -18,10 +18,10 @@ const DeleteModal = ({ visible, setVisible }) => {
         >
             <div className={styles.back}>
                 <div className={styles.modal}>
-                    <p className={styles.text}>Вы действительно хотите удалить эту книгу?</p>
+                    <p className={styles.text}>{text}</p>
                     <div className={styles.under_line}>
                         <p
-                            onClick={closeModal}
+                            onClick={deleteFunc}
                             className={styles.btn + ' ' + styles.red}
                         >
                             Удалить

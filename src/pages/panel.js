@@ -1,32 +1,36 @@
-import React, {useState} from 'react';
+import React from 'react';
 import styles from "../styles/pages/panel.module.css"
 import PagesList from "../components/PagesList";
 import BooksWindow from "./windows/BooksWindow";
+import GenresWindow from "./windows/GenresWindow";
+import {useParams} from "react-router-dom";
+import OrdersWindow from "./windows/OrdersWindow";
 
 const Panel = () => {
+
+    const {id} = useParams()
 
     const windows = [
         {
             page: 1,
             Component: BooksWindow,
+        },
+        {
+            page: 2,
+            Component: GenresWindow,
+        },
+        {
+            page: 3,
+            Component: OrdersWindow,
         }
     ]
 
-    const [window, setWindow] = useState(1)
-
-    const updateWindow = (value) => {
-        setWindow(value)
-    }
-
     return (
         <div className={styles.block}>
-            <PagesList
-                window={window}
-                setWindow={(value) => updateWindow(value)}
-            />
+            <PagesList />
             {windows.map(win =>
                 <>
-                    {win.page === window &&
+                    {win.page === Number(id) &&
                         <win.Component />
                     }
                 </>

@@ -6,6 +6,7 @@ import Button from "../components/Button";
 import {authAdmin, sendDataOnEmail} from "../http/api/auth";
 import Cookies from "universal-cookie/es6";
 import {useNavigate} from "react-router-dom";
+import {PANEL_ROUTE} from "../utils/consts";
 
 const SignIn = () => {
 
@@ -41,7 +42,7 @@ const SignIn = () => {
                 if (data) {
                     cookie.set('token', token, { path: '/' })
                     cookie.set('id', id, { path: '/' })
-                    navigate("/home")
+                    navigate(PANEL_ROUTE + '1')
                 }
             })
         }
